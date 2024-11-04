@@ -1,4 +1,3 @@
-```markdown
 # RSA Encryption Program
 
 ## Compilation
@@ -18,6 +17,6 @@ Run the compiled program with:
 - `input.c`: Handles user input for the plaintext message.
 - `main.c`: Initializes OpenSSL, manages encryption and decryption processes.
 - `qr.h`: Header file defining function prototypes and includes necessary libraries.
-```
 
+```
 Feel free to adjust any part as necessary!
