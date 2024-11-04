@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Win64",  // Change this if you're on a different platform
+            "includePath": [
+                "D:/Procedural Programming/QR Project/QR-Code/decode-source", // Adjust this path based on your actual directory
+                "D:/Procedural Programming/QR Project/QR-Code/qr-source" // Adjust this path as needed
+            ],
+            "defines": [],
+            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe", // Ensure this points to your GCC compiler
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64" // Add this line for IntelliSense mode
+        }
+    ],
+    "version": 4
+}
