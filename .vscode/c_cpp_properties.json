@@ -5,11 +5,10 @@
             "includePath": [
                 "D:/Procedural Programming/QR Project/QR-Code/decode-source",
                 "D:/Procedural Programming/QR Project/QR-Code/qr-source",
-                "D:/OpenCV/opencv/sources/include/opencv2",
-                "D:/OpenCV/opencv/sources/modules/imgcodecs/include/opencv2/imgcodecs",
-                "D:/OpenCV/opencv/sources/modules/objdetect/include/opencv2/objdetect",
-                "D:/OpenCV/opencv/build/include",
-                "D:/OpenCV/opencv/build/x64/vc16/lib"
+                "C:/msys64/mingw64/include/opencv4/opencv2/",
+                "C:/msys64/mingw64/include/opencv4",
+                "C:/msys64/mingw64/bin"
+                
             ],
             "defines": [],
             "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
