@@ -1,16 +1,21 @@
 {
     "configurations": [
         {
-            "name": "Win64",  // Change this if you're on a different platform
+            "name": "Win64",
             "includePath": [
-                "D:/Procedural Programming/QR Project/QR-Code/decode-source", // Adjust this path based on your actual directory
-                "D:/Procedural Programming/QR Project/QR-Code/qr-source" // Adjust this path as needed
+                "D:/Procedural Programming/QR Project/QR-Code/decode-source",
+                "D:/Procedural Programming/QR Project/QR-Code/qr-source",
+                "D:/OpenCV/opencv/sources/include/opencv2",
+                "D:/OpenCV/opencv/sources/modules/imgcodecs/include/opencv2/imgcodecs",
+                "D:/OpenCV/opencv/sources/modules/objdetect/include/opencv2/objdetect",
+                "D:/OpenCV/opencv/build/include",
+                "D:/OpenCV/opencv/build/x64/vc16/lib"
             ],
             "defines": [],
-            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe", // Ensure this points to your GCC compiler
+            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64" // Add this line for IntelliSense mode
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4

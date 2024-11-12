@@ -8,8 +8,6 @@
 #include <openssl/evp.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>
-#include "qrcodegen.h"
-#include "stb_image.h"
 #define MAX_LIMIT 500
 
 // Error handling function
@@ -34,9 +32,9 @@ int decrypt(EVP_PKEY *pkey, const unsigned char *ciphertext, size_t ciphertext_l
 char * input_handler();
 
 // Function to encode text into QR format
-void genQR(const char *text, const char *filename, int quality);
+void generate_qr_code(const char *data, const char *filename);
 
-// Function to print QR code
-// void printQr(const uint8_t qrcode[]);
+// Function to encode text into base64
+char *base64_encode(const unsigned char *input, size_t length);
 
 #endif // QR_H

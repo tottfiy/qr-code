@@ -1,41 +1,39 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs.hpp>
 #include <opencv2/objdetect.hpp>
 #include <iostream>
 
 int main() {
-    // Load the QR code image
-    cv::Mat image = cv::imread("qrcode.jpg");
-
-    if (image.empty()) {
-        std::cout << "Could not open or find the image!" << std::endl;
-        return -1;
-    }
-
-    // Create a QRCodeDetector object
-    cv::QRCodeDetector qrDecoder;
-
-    // Variables to hold the decoded data and points
-    std::string decodedText;
-    std::vector<cv::Point> points;
-
-    // Decode the QR code in the image
-    bool found = qrDecoder.detectAndDecode(image, decodedText, points);
-
-    if (found) {
-        // If QR code is detected, print the decoded text
-        std::cout << "QR Code detected: " << decodedText << std::endl;
-
-        // Optionally: Draw the polygon around the detected QR code
-        cv::polylines(image, points, true, cv::Scalar(0, 255, 0), 2);
-
-        // Display the result
-        cv::imshow("QR Code Detection", image);
-        cv::waitKey(0);
-    } else {
-        std::cout << "QR Code not detected!" << std::endl;
-    }
-
-    return 0;
+    // Corrected code
+cv::Mat qrImage = cv::imread("qr.jpeg");
+if (qrImage.empty()) {
+    std::cerr << "Error: Could not load the image!" << std::endl;
+    return -1;
 }
 
-// g++ -std=c++11 -o decode_qrcode decode_qrcode.cpp -ID:/OpenCV/opencv/build/include -LD:/OpenCV/opencv/build/x64/vc16/lib -lopencv_world490
+// Create a QR code detector
+cv::QRCodeDetector qrDecoder;
+
+// Decode the QR code directly and capture the decoded text
+cv::Mat bbox, rectifiedImage;
+std::string decodedText = qrDecoder.detectAndDecode(qrImage, bbox, rectifiedImage);
+
+if (decodedText.empty()) {
+    std::cout << "No QR code detected or failed to decode." << std::endl;
+} else {
+    // Print the decoded string
+    std::cout << "Decoded string: " << decodedText << std::endl;
+}
+
+// Optionally, display the image with the detected QR code
+if (!bbox.empty()) {
+    for (int i = 0; i < bbox.rows; i++) {
+        cv::line(qrImage, bbox.at<cv::Point2f>(i), bbox.at<cv::Point2f>((i + 1) % bbox.rows), cv::Scalar(0, 255, 0), 2);
+    }
+    cv::imshow("QR Code", qrImage);
+    cv::waitKey(0);
+}
+
+return 0;
+
+}
