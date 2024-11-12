@@ -8,6 +8,7 @@
 #include <openssl/evp.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>
+
 #define MAX_LIMIT 500
 
 // Error handling function
@@ -22,6 +23,9 @@ void printPublicKey(EVP_PKEY *pkey);
 // Function to print the private key to stdout
 void printPrivateKey(EVP_PKEY *pkey);
 
+// Function to save the private key to file
+void savePrivateKey(EVP_PKEY *pkey);
+
 // Function to encrypt the plaintext using the public key
 int encrypt(EVP_PKEY *pkey, const unsigned char *plaintext, size_t plaintext_len, unsigned char **ciphertext);
 
@@ -35,6 +39,10 @@ char * input_handler();
 void generate_qr_code(const char *data, const char *filename);
 
 // Function to encode text into base64
-char *base64_encode(const unsigned char *input, size_t length);
+char *base64_encode(const unsigned char *input);
+
+// Function to encode text into base64
+unsigned char *base64_decode(const char *input);
+
 
 #endif // QR_H

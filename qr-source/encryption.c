@@ -1,9 +1,11 @@
 #include "qr.h"
 
 // Base64 encode function
-char *base64_encode(const unsigned char *input, size_t length) {
-    size_t encoded_length = 4 * ((length + 2) / 3);  // Base64 encoding requires 4 chars for every 3 bytes
+char *base64_encode(const unsigned char *input) {
+    size_t length = strlen((const char *)input); // Calculate the length inside the function
+    size_t encoded_length = 4 * ((length + 2) / 3); // Base64 encoding requires 4 chars for every 3 bytes
     char *encoded = (char *)malloc(encoded_length + 1); // +1 for the null terminator
+
     if (encoded == NULL) {
         perror("Base64 encoding failed");
         return NULL;
@@ -11,6 +13,28 @@ char *base64_encode(const unsigned char *input, size_t length) {
 
     EVP_EncodeBlock((unsigned char *)encoded, input, length);
     return encoded;
+}
+
+
+unsigned char *base64_decode(const char *input) {
+    size_t length = strlen(input); // Calculate the length inside the function
+    size_t decoded_length = (length / 4) * 3;
+    unsigned char *decoded = (unsigned char *)malloc(decoded_length + 1); // +1 for the null terminator
+
+    if (decoded == NULL) {
+        perror("Base64 decoding failed");
+        return NULL;
+    }
+
+    // Decode the base64 string
+    int result_len = EVP_DecodeBlock(decoded, (const unsigned char *)input, length);
+    if (result_len < 0) {
+        perror("Base64 decoding failed");
+        free(decoded);
+        return NULL;
+    }
+
+    return decoded;
 }
 
 // Function to handle OPENSSL Errors
@@ -42,6 +66,20 @@ void printPublicKey(EVP_PKEY *pkey) {
 // Function to print the private key to stdout
 void printPrivateKey(EVP_PKEY *pkey) {
     PEM_write_PrivateKey(stdout, pkey, NULL, NULL, 0, NULL, NULL);
+}
+
+void savePrivateKey(EVP_PKEY *pkey) {
+    FILE * file = fopen("private-key.pem", "wb");
+    if (!file) {
+        perror("Failed to open file for writing private key");
+        handleErrors();
+    }
+
+    if (PEM_write_PrivateKey(file, pkey, NULL, NULL, 0, NULL, NULL) <= 0) {
+        perror("Failed to write private key to file");
+        handleErrors();
+    }
+    fclose(file);
 }
 
 // Function to encrypt the plaintext using the public key
