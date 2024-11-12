@@ -3,7 +3,7 @@
 ## Compilation
 To compile the program, use the following command:
 ```bash
-gcc main.c input.c encryption.c -o encrypt -lcrypto
+gcc main.c input.c encryption.c qrcodegen.c qr.c -o encrypt -lqrencode -ljpeg -lssl -lcrypto
 ```
 
 ## Running the Program

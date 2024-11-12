@@ -1,0 +1,4 @@
+{
+    "-I": "D:/OpenCV/opencv/build/include",  // Adjust this path as needed
+    "-L": "D:/OpenCV/opencv/build/x64/vc16/lib",  // Path to OpenCV libraries (optional)
+}

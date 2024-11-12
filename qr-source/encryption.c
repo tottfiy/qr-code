@@ -1,5 +1,18 @@
 #include "qr.h"
 
+// Base64 encode function
+char *base64_encode(const unsigned char *input, size_t length) {
+    size_t encoded_length = 4 * ((length + 2) / 3);  // Base64 encoding requires 4 chars for every 3 bytes
+    char *encoded = (char *)malloc(encoded_length + 1); // +1 for the null terminator
+    if (encoded == NULL) {
+        perror("Base64 encoding failed");
+        return NULL;
+    }
+
+    EVP_EncodeBlock((unsigned char *)encoded, input, length);
+    return encoded;
+}
+
 // Function to handle OPENSSL Errors
 void handleErrors() {
     ERR_print_errors_fp(stderr);
