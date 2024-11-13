@@ -23,8 +23,8 @@
 - QR generator:
 
 ```bash
-gcc main.c input.c encryption.c qrgen.c -o qrgen -lcrypto -lqrencode
+gcc main.c input.c encryption.c qr.c -o qrgen -lcrypto -lqrencode -ljpeg
 ````
 - QR decryptor:
 ```bash
-WIP.
+g++ -o decode decode.cpp main.c decryption.c -I/usr/include/opencv4 -lcrypt -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui -lssl -lcrypto -lzbar
