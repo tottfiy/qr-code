@@ -1,8 +1,8 @@
 // #include <opencv2/opencv_modules.hpp>
 
-#include "qr.hpp"
+#include "decode.hpp"
 
-int decoder(const char * filename) {
+char * decoder(const char * filename) {
     // Load the image using OpenCV
     cv::Mat image = cv::imread(filename, cv::IMREAD_COLOR);  // Read the image in color mode
 
@@ -33,14 +33,17 @@ int decoder(const char * filename) {
 
     // If barcodes are found, print them
     if (n > 0) {
-        std::cout << "Barcode(s) found!" << std::endl;
+        std::string data;
         for (zbar::Image::SymbolIterator symbol = zbarImage.symbol_begin(); symbol != zbarImage.symbol_end(); ++symbol) {
-            std::cout << "Type: " << symbol->get_type_name() << std::endl;
-            std::cout << "Data: " << symbol->get_data() << std::endl;
+            data = symbol->get_data();  // Assume the first QR code's data is sufficient
+            break;
         }
+        char* result = new char[data.length() + 1];
+        strcpy(result, data.c_str());
+        return result;
     } else {
-        std::cout << "No barcodes found." << std::endl;
+        std::cerr << "No barcodes found." << std::endl;
+        return nullptr;
     }
-
-    return 0;
 }
+

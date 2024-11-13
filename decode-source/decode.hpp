@@ -1,6 +1,6 @@
 
-#ifndef QR_H
-#define QR_H
+#ifndef DECODE_HPP
+#define DECODE_HPP
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +14,6 @@
 
 
 // Function to decode QR image
-int decoder(const char * filename);
+char * decoder(const char * filename);
 
 #endif // QR_H

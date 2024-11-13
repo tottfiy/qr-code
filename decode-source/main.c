@@ -1,4 +1,4 @@
-#include "../qr-source/qr.h"
+#include "decode.hpp"
 
 int main() {
     // Load the private key from a PEM file
