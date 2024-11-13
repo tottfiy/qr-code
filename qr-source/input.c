@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h> 
 #include "qr.h" 
 
 // Function to handle input from user

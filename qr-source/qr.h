@@ -8,6 +8,9 @@
 #include <openssl/evp.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>
+#include <qrencode.h>
+#include <jpeglib.h>
+
 
 #define MAX_LIMIT 500
 

@@ -9,7 +9,7 @@ char * decoder(const char * filename) {
     // Check if the image was loaded successfully
     if (image.empty()) {
         std::cerr << "Error: Could not open or find the image!" << std::endl;
-        return -1;
+        return nullptr;
     }
 
     // Convert to grayscale (ZBar works better with grayscale images for barcode detection)
@@ -34,7 +34,10 @@ char * decoder(const char * filename) {
     // If barcodes are found, print them
     if (n > 0) {
         std::string data;
+        std::cout << "Barcode(s) found!" << std::endl;
         for (zbar::Image::SymbolIterator symbol = zbarImage.symbol_begin(); symbol != zbarImage.symbol_end(); ++symbol) {
+            std::cout << "Type: " << symbol->get_type_name() << std::endl;
+            std::cout << "Data: " << symbol->get_data() << std::endl;
             data = symbol->get_data();  // Assume the first QR code's data is sufficient
             break;
         }

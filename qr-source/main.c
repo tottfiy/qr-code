@@ -20,7 +20,7 @@ void main() {
     // printf("\n");
     
 
-    generate_qr_code(encoded_data, "qr.jpg");  // Generate qr.jpg file
+    generate_qr_code(encoded_data, "../app/qr.jpg");  // Generate qr.jpg file
 
     // char* decoded_text = decoder("qr.jpg");
     // unsigned char *decoded_ciphertext = base64_decode(decoded_text, enclen);

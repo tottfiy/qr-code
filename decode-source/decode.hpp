@@ -16,4 +16,4 @@
 // Function to decode QR image
 char * decoder(const char * filename);
 
-#endif // QR_H
+#endif // DECODE_HPP

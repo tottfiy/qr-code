@@ -37,7 +37,7 @@ int decrypt(EVP_PKEY *pkey, const unsigned char *ciphertext, size_t ciphertext_l
     size_t plaintext_len;
     if (EVP_PKEY_decrypt(ctx, NULL, &plaintext_len, ciphertext, ciphertext_len) <= 0) handleErrors();
 
-    *plaintext = OPENSSL_malloc(plaintext_len);
+    *plaintext = (unsigned char*)OPENSSL_malloc(plaintext_len);
     if (*plaintext == NULL) handleErrors();
 
     if (EVP_PKEY_decrypt(ctx, *plaintext, &plaintext_len, ciphertext, ciphertext_len) <= 0) handleErrors();

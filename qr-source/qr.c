@@ -1,9 +1,4 @@
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "qr.h"
-#include <qrencode.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <jpeglib.h>
 
 void generate_qr_code(const char *data, const char *filename) {
     // Generate QR code with larger size (increase module size to 10 for better readability)

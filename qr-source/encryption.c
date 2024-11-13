@@ -69,7 +69,7 @@ void printPrivateKey(EVP_PKEY *pkey) {
 }
 
 void savePrivateKey(EVP_PKEY *pkey) {
-    FILE * file = fopen("private-key.pem", "wb");
+    FILE * file = fopen("../app/private-key.pem", "wb");
     if (!file) {
         perror("Failed to open file for writing private key");
         handleErrors();
@@ -101,22 +101,4 @@ int encrypt(EVP_PKEY *pkey, const unsigned char *plaintext, size_t plaintext_len
     return ciphertext_len;
 }
 
-// Function to decrypt the ciphertext using the private key
-int decrypt(EVP_PKEY *pkey, const unsigned char *ciphertext, size_t ciphertext_len, unsigned char **plaintext) {
-    EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new(pkey, NULL);
-    if (!ctx) handleErrors();
-
-    if (EVP_PKEY_decrypt_init(ctx) <= 0) handleErrors();
-
-    size_t plaintext_len;
-    if (EVP_PKEY_decrypt(ctx, NULL, &plaintext_len, ciphertext, ciphertext_len) <= 0) handleErrors();
-
-    *plaintext = OPENSSL_malloc(plaintext_len);
-    if (*plaintext == NULL) handleErrors();
-
-    if (EVP_PKEY_decrypt(ctx, *plaintext, &plaintext_len, ciphertext, ciphertext_len) <= 0) handleErrors();
-
-    EVP_PKEY_CTX_free(ctx);
-    return plaintext_len;
-}
 

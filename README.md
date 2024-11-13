@@ -6,15 +6,21 @@
 - **encryption.c**: Generates public and private keys, encrypts user data.
 - **qrgen.c**: Generates and saves the QR code, sends it to the user along with the private key.
 - **main.c**: Coordinates the execution of functions.
-- **test.c**: Tests input validation and encryption/decryption processes.
+
 ##### **QR decryptor**
-- **WIP**
+- **decode.hpp**: Contains function declarations for all source files except `main()`.
+- **decode.cpp**: Extracts data from QR code.
+- **decryption.c**: Decodes and decrypts data from QR code.
+- **main.c**: Coordinates the execution of functions.
 
 
 # **Requirements**
 - OpenSSL
 - qrencode
-- computer
+- libjpeg
+- zbar
+- opencv
+
 
 
 # **Compilation**
@@ -23,8 +29,8 @@
 - QR generator:
 
 ```bash
-gcc main.c input.c encryption.c qr.c -o qrgen -lcrypto -lqrencode -ljpeg
-````
+gcc main.c input.c encryption.c qr.c -o ../app/qrgen -lcrypto -lqrencode -ljpeg
+```
 - QR decryptor:
 ```bash
-g++ -o decode decode.cpp main.c decryption.c -I/usr/include/opencv4 -lcrypt -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui -lssl -lcrypto -lzbar
+g++  decode.cpp main.c decryption.c -o ../app/decode -I/usr/include/opencv4 -lcrypt -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui -lssl -lcrypto -lzbar
