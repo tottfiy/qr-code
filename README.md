@@ -22,7 +22,7 @@
 - opencv
   ```bash
   sudo apt-get install libjpeg-dev libqrencode-dev libopencv-dev zbar-tools libssl-dev libzbar-dev
-```
+
 
 
 
@@ -33,6 +33,7 @@
 
 ```bash
 gcc main.c input.c encryption.c qr.c -o ../app/qrgen -lcrypto -lqrencode -ljpeg
+
 ```
 - QR decryptor:
 ```bash
