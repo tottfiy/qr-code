@@ -20,6 +20,9 @@
 - libjpeg
 - zbar
 - opencv
+  ```bash
+  sudo apt-get install libjpeg-dev libqrencode-dev libopencv-dev zbar-tools libssl-dev libzbar-dev
+```
 
 
 
